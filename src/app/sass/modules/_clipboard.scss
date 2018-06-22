@@ -1,0 +1,145 @@
+@font-face {
+  font-family: 'clipboard';
+  src:  url('../fonts/clipboard.eot?5mehd6');
+  src:  url('../fonts/clipboard.eot?5mehd6#iefix') format('embedded-opentype'),
+    url('../fonts/clipboard.ttf?5mehd6') format('truetype'),
+    url('../fonts/clipboard.woff?5mehd6') format('woff'),
+    url('../fonts/clipboard.svg?5mehd6#clipboard') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-clipboard:before {
+  content: "\e900";
+}
+.icon-envelope:before {
+  content: "\e901";
+}
+.icon-phone:before {
+  content: "\e902";
+}
+
+.clipboard-container {
+    max-width: 1340px;
+    width: 100%;
+    margin: 50px auto;
+    font-size: 1.2em;
+    line-height: 1.5;
+    padding: 0 20px;
+
+    .phone,
+    .mail {
+        display: block;
+        position: relative;
+        padding: 15px 55px 15px 15px;
+        margin-bottom: 15px;
+        background-color: $black;
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            @include flex-box();
+            @include align-items(center);
+            @include transition(color .3s ease);
+
+            &:before {
+                color: white;
+                font-size: 1.4em;
+                margin-right: 15px;
+                position: relative;
+
+                @include transition(color .3s ease);
+                @include font();
+            }
+
+            &:hover {
+                color: $blue;
+                text-decoration: none;
+
+                &:before { color: $blue; }
+            }
+
+            @media only screen and (max-width: $tablet) {
+                font-size: 1em;
+            }
+        }
+    }
+
+    .phone {
+        margin-bottom: 15px;
+
+        a:before { content: '\e902'; }
+    }
+
+    .mail {
+        a:before { content: '\e901'; }
+
+        .clipboard-icon {
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+            top: 0;
+            bottom: 0;
+            background: none;
+            outline: none;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            width: 50px;
+            text-align: center;
+
+            @include flex-box();
+            @include align-items(center);
+            @include justify-content(center);
+
+            &:after {
+                content: '\e900';
+                margin-right: 0;
+                top: 0;
+                color: white;
+                font-size: 1.6em;
+                position: relative;
+
+                @include font();
+                @include transition(color .3s ease);
+            }
+
+            &:hover {
+                &:after { color: $blue; }
+            }
+        }
+        
+        .clipboard-popup {
+            position: absolute;
+            width: 170px;
+            background-color: $blue;
+            height: 40px;
+            right: 0;
+            color: white;
+            top: calc(100% + 15px);
+            font-size: .8em;
+
+            @include flex-box();
+            @include align-items(center);
+            @include justify-content(center);
+            @include opacity(0);
+            @include transition(opacity ease);
+
+            &:before {
+                content: '';
+                top: -9px;
+                right: 14px;
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid $blue;
+            }
+
+            &.hide {display: none; }
+            &.show { @include opacity(1); }
+        }
+    }
+}
