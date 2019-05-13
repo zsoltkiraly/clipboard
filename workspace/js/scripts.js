@@ -72,7 +72,7 @@ var clipboard = function() {
 
 window.addEventListener('load', function() {
     clipboard.app(
-        var config = {
+        config = {
             popupShowTime: 2000,
             popupDuration: 500
         }
